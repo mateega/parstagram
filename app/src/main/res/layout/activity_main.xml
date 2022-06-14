@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<!--    <Button-->
+<!--        android:id="@+id/btnLogout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
 
-        android:text="Log out"
-        tools:layout_editor_absoluteX="288dp"
-        tools:layout_editor_absoluteY="39dp" />
+<!--        android:text="Log out"-->
+<!--        tools:layout_editor_absoluteX="288dp"-->
+<!--        tools:layout_editor_absoluteY="39dp" />-->
 
     <EditText
         android:id="@+id/etDescription"
