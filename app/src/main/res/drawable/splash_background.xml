@@ -2,8 +2,18 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/bg_gradient"/>
+
     <item>
-        <bitmap android:gravity="center"
-            android:src="@drawable/splash_fg"/>
+    <bitmap android:gravity="center"
+        android:src="@drawable/instagram_white_2"
+        android:layout_width="1000dp"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        />
     </item>
 </layer-list>
+
+
+
+
