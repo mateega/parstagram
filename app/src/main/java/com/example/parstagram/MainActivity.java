@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSubmit;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private Button btnFeed;
 
 
     @Override
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnFeed = findViewById(R.id.btnFeed);
 //        btnLogout = findViewById(R.id.btnLogout);
 //
 //        btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
 //                goToLogin();
 //            }
 //        });
+
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "clicked feed button");
+                goToFeed();
+            }
+        });
 
         etDescrption = findViewById(R.id.etDescription);
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
@@ -123,6 +133,11 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description, currentUser, photoFile);
             }
         });
+    }
+
+    private void goToFeed() {
+        Intent i = new Intent(this, FeedActivity.class);
+        startActivity(i);
     }
 
     private void launchCamera() {
