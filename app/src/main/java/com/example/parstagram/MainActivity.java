@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -53,7 +55,38 @@ public class MainActivity extends AppCompatActivity {
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
 
-        queryPosts();
+//        queryPosts();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String description = etDescrption.getText().toString();
+                if (description.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePost(description, currentUser);
+            }
+        });
+    }
+
+    private void savePost(String description, ParseUser currentUser) {
+        Post post = new Post();
+        post.setDescription(description);
+        // post.setImage();
+        post.setUser(currentUser);
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!= null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(MainActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                }
+                Log.i(TAG, "Post save was successful!!");
+                etDescrption.setText("");
+            }
+        });
     }
 
     private void goToLogin() {
