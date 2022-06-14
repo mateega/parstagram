@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
+                    Log.i(TAG, "login success");
                     goMainActivity();
                 } else {
                     Log.e(TAG, "Issue with login", e);
