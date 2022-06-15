@@ -21,8 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
+        android:padding="8dp"
         android:ems="10"
         android:hint="username"
+        android:background="@drawable/custom_input"
         android:inputType="text"
         tools:layout_editor_absoluteY="100dp" />
 
@@ -31,8 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
         android:ems="10"
         android:hint="password"
+        android:background="@drawable/custom_input"
         android:inputType="textPassword"
         tools:layout_editor_absoluteY="157dp" />
 
@@ -42,7 +47,7 @@
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:text="Login"
@@ -59,6 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="Don't have an account? Sign up"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
