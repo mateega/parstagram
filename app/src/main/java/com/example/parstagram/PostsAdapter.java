@@ -105,7 +105,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             Log.i(TAG, String.valueOf(position));
             String image = posts.get(position).getImage().getUrl();
 
-            Date date = posts.get(position).getTimeStamp();
+            Date date = posts.get(position).getCreatedAt();
 
             String dateString = Post.calculateTimeAgo(date);
             Log.i("DATE", dateString);

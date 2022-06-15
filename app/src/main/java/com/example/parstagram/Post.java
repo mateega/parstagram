@@ -42,15 +42,6 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
-    public Date getTimeStamp() {
-        return getDate(KEY_TIME_STAMP);
-    }
-
-    public void setTimeStamp(Date timeStamp){
-        put(KEY_TIME_STAMP, timeStamp);
-    }
-
-
     public static String calculateTimeAgo(Date createdAt) {
 
         int SECOND_MILLIS = 1000;
