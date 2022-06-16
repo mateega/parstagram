@@ -11,9 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parstagram.fragments.FeedFragment;
+import com.example.parstagram.fragments.PostDetailsFragment;
 import com.parse.ParseFile;
 
 import java.text.DateFormat;
@@ -106,21 +113,25 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             String image = posts.get(position).getImage().getUrl();
 
             Date date = posts.get(position).getCreatedAt();
-
             String dateString = Post.calculateTimeAgo(date);
-            Log.i("DATE", dateString);
 
-            Intent i = new Intent(context.getApplicationContext(), PostDetailsActivity.class);
-            i.putExtra("username", posts.get(position).getUser().getUsername());
-            i.putExtra("description", posts.get(position).getDescription());
-            i.putExtra("timeStamp", dateString);
-            i.putExtra("image", image);
-            view.getContext().startActivity(i);
+            MainActivity.setUsername(posts.get(position).getUser().getUsername());
+            MainActivity.setDescription(posts.get(position).getDescription());
+            MainActivity.setTimeStamp(dateString);
+            MainActivity.setImage(image);
+
+//            FeedFragment.launchDetails();
+
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            Fragment myFragment = new PostDetailsFragment();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+
+
+
         }
 
 
     }
-
 
 
 }

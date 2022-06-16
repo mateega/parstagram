@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public static String TAG = "Main Activity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+    public static String username;
+    public static String description;
+    public static String timeStamp;
+    public static String image;
 
 
     @Override
@@ -109,6 +113,32 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public static String getUsername(){
+        return username;
+    }
+    public static String getDescription(){
+        return description;
+    }
+    public static String getTimeStamp(){
+        return timeStamp;
+    }
+    public static String getImage(){
+        return image;
+    }
+
+    public static void setUsername(String newUsername) {
+        username = newUsername;
+    }
+    public static void setDescription(String newDescription){
+        description = newDescription;
+    }
+    public static void setTimeStamp(String newTimeStamp){
+        timeStamp = newTimeStamp;
+    }
+    public static void setImage(String newImage){
+        image = newImage;
     }
 
 }
