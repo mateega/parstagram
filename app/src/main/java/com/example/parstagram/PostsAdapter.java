@@ -79,15 +79,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvUsername;
+        private TextView tvUsername1;
+        private TextView tvUsername2;
         private ImageView ivImage;
         private TextView tvDescription;
+        private TextView tvTimeStamp;
+        private ImageView ivProfileImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUsername = itemView.findViewById(R.id.tvUsername);
+            tvUsername1 = itemView.findViewById(R.id.tvUsername1);
+            tvUsername2 = itemView.findViewById(R.id.tvUsername2);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
 
             itemView.setOnClickListener((View.OnClickListener) this);
 
@@ -99,10 +105,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public void bind(Post post) {
             // bind the post data to the view elements
             tvDescription.setText(post.getDescription());
-            tvUsername.setText(post.getUser().getUsername());
+            tvUsername1.setText(post.getUser().getUsername());
+            tvUsername2.setText(post.getUser().getUsername());
+            tvTimeStamp.setText(Post.calculateTimeAgo(post.getCreatedAt()));
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
+            }
+            ParseFile profilePicture = (ParseFile) post.getUser().get("profilePic");
+            if (profilePicture != null) {
+                Glide.with(context).load(profilePicture.getUrl()).into(ivProfileImage);
             }
         }
 
