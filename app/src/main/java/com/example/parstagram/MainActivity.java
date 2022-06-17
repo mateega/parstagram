@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static String description;
     public static String timeStamp;
     public static String image;
+    public static String profilePic;
 
 
     @Override
@@ -127,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
     public static String getImage(){
         return image;
     }
+//    public static String getProfilePic(){
+//        return profilePic;
+//    }
 
     public static void setUsername(String newUsername) {
         username = newUsername;
@@ -140,5 +144,8 @@ public class MainActivity extends AppCompatActivity {
     public static void setImage(String newImage){
         image = newImage;
     }
+//    public static void setProfilePic(String newProfilePic){
+//        profilePic = newProfilePic;
+//    }
 
 }

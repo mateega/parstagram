@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.parstagram.MainActivity;
 import com.example.parstagram.R;
+import com.parse.ParseFile;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +26,9 @@ import com.example.parstagram.R;
  */
 public class PostDetailsFragment extends Fragment {
 
-    private TextView tvUsername;
+    // private ImageView ivProfileImage;
+    private TextView tvUsername1;
+    private TextView tvUsername2;
     private ImageView ivPostImage;
     private TextView tvDescription;
     private TextView tvTimeStamp;
@@ -81,17 +84,23 @@ public class PostDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tvUsername = view.findViewById(R.id.tvUsername);
+        // ivProfileImage = view.findViewById(R.id.ivProfileImage);
+        tvUsername1 = view.findViewById(R.id.tvUsername1);
+        tvUsername2 = view.findViewById(R.id.tvUsername2);
         tvDescription = view.findViewById(R.id.tvDescription);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         tvTimeStamp = view.findViewById(R.id.tvTimeStamp);
 
+//        String profilePicUrl = MainActivity.getProfilePic();
+//        if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+//            Glide.with(getApplicationContext()).load(profilePicUrl).into(ivProfileImage);
+//        }
 
-        tvUsername.setText(MainActivity.getUsername());
+        tvUsername1.setText(MainActivity.getUsername());
+        tvUsername2.setText(MainActivity.getUsername());
         tvDescription.setText(MainActivity.getDescription());
 
         String imageUrl = MainActivity.getImage();
-
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(getApplicationContext()).load(imageUrl).into(ivPostImage);
         }

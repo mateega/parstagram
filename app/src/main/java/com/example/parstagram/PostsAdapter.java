@@ -123,6 +123,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             int position = getAdapterPosition();
             Log.i(TAG, String.valueOf(position));
             String image = posts.get(position).getImage().getUrl();
+            // String profilePic = posts.get(position).getUser().get("profilePic")();
 
             Date date = posts.get(position).getCreatedAt();
             String dateString = Post.calculateTimeAgo(date);
@@ -131,6 +132,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             MainActivity.setDescription(posts.get(position).getDescription());
             MainActivity.setTimeStamp(dateString);
             MainActivity.setImage(image);
+            // MainActivity.setProfilePic(profilePic);
 
 //            FeedFragment.launchDetails();
 
