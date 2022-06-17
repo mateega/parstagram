@@ -24,8 +24,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.parstagram.FeedActivity;
-import com.example.parstagram.MainActivity;
 import com.example.parstagram.Post;
 import com.example.parstagram.R;
 import com.parse.FindCallback;
@@ -165,11 +163,6 @@ public class ShareFragment extends Fragment {
                 ivPostImage.setImageResource(0);
             }
         });
-    }
-
-    private void goToFeed() {
-        Intent i = new Intent(getContext(), FeedActivity.class);
-        startActivity(i);
     }
 
     private void launchCamera() {

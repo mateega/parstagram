@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.parstagram.EndlessRecyclerViewScrollListener;
 import com.example.parstagram.MainActivity;
 import com.example.parstagram.Post;
 import com.example.parstagram.PostsAdapter;
@@ -45,8 +46,10 @@ public class FeedFragment extends Fragment {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
-
+    private int PAGE_LIMIT = 5;
+    private int SKIP_AMOUNT = 0;
 
 
 
@@ -109,9 +112,19 @@ public class FeedFragment extends Fragment {
         // set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(linearLayoutManager);
         // query posts form Parstagram
-        queryPosts();
+        queryPosts(0);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadNextDataFromApi(page);
+            }
+        };
+        rvPosts.addOnScrollListener(scrollListener);
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -149,19 +162,28 @@ public class FeedFragment extends Fragment {
 
     }
 
-    private void fetchTimelineAsync(int i) {
-        adapter.clear();
-        queryPosts();
-        swipeContainer.setRefreshing(false);
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataFromApi(int offset) {
+        SKIP_AMOUNT = SKIP_AMOUNT + PAGE_LIMIT;
+        // Send an API request to retrieve appropriate paginated data
+        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
+        //  --> Deserialize and construct new model objects from the API response
+        //  --> Append the new data objects to the existing set of items inside the array of items
+        //  --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
+        queryPosts(SKIP_AMOUNT);
+
+
     }
 
-    protected void queryPosts() {
+    protected void queryPosts(int skipAmount) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
+        query.setSkip(skipAmount);
         // limit query to latest 20 items
-        query.setLimit(20);
+        query.setLimit(PAGE_LIMIT);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
@@ -185,6 +207,12 @@ public class FeedFragment extends Fragment {
             }
         });
 
+    }
+
+    private void fetchTimelineAsync(int i) {
+        adapter.clear();
+        queryPosts(i);
+        swipeContainer.setRefreshing(false);
     }
 
 
