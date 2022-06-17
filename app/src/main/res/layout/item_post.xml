@@ -26,7 +26,6 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             tools:srcCompat="@tools:sample/avatars" />
-
     </androidx.cardview.widget.CardView>
 
 
