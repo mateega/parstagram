@@ -1,8 +1,8 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *Parstagram*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+Parsegram is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: 20 hours spent in total
 
 ## User Stories
 
@@ -37,14 +37,10 @@ The following **stretch** features are implemented:
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [ ] User can like a post and see number of likes for each post in the post details screen.
 
-The following **additional** features are implemented:
-
-- [ ] List anything else that you can get done to improve the app functionality!
-
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to better transition to a new fragment from a recycler view item with another fragment (e.g. clicking on a post in the feed and going to the details fragment for this post)
+2. If anyone implemented commenting or liking, it would be nice to learn how they structured this data in Parse
 
 ## Video Walkthrough
 
@@ -63,11 +59,11 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The biggest I faced was implementing the transition from the feed to the details page.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2022 Spencer Mateega
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
